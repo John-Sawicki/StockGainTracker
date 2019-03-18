@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="loseMinor">#ff7961</color>
+    <color name="loseMedium">#f44336</color>
+    <color name="loseMajor">#ba000d</color>
+    <color name="gainMinor">#76d275</color>
+    <color name="gainMedium">#43a047</color>
+    <color name="gainMajor">#00701a</color>
+
+</resources>
