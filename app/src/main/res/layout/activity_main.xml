@@ -8,31 +8,75 @@
         tools:context=".MainActivity">
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stock Gain Tracker"
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:text="@string/stock_gain_tracker"
             android:id="@+id/tv_title"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="Gain/(Loss)"
-            android:id="@+id/tv_gain_lose"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_constraintLeft_toRightOf="@id/btn_reset"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_reset"/>
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="Reset"
-            android:id="@+id/btn_reset"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="tv_gain_lose"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ll_gain_value"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
+                  android:orientation="horizontal"
+                  app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                  app:layout_constraintBottom_toTopOf="@id/ll_column_title"
+                  android:id="@+id/ll_gain_value">
+        <TextView style="@style/column_title_wide"
+                  android:text="Gain/(Loss)"
+                  android:id="@+id/tv_gain_lose"/>
+        <TextView style="@style/column_title_narrow"
+                  android:text="$0"/>
+        <Button style="@style/column_title_narrow"
+                android:text="Reset"
+                android:id="@+id/btn_reset"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
+                  android:orientation="horizontal"
+                  app:layout_constraintTop_toBottomOf="@+id/ll_gain_value"
+                  app:layout_constraintBottom_toTopOf="@id/rv_stocks"
+                  android:id="@+id/ll_column_title">
+        <TextView style="@style/column_title_wide"
+                  android:text="@string/stock"/>
+        <TextView style="@style/column_title_narrow"
+                  android:text="@string/price"/>
+        <TextView style="@style/column_title_narrow"
+                  android:text="@string/percent_change"/>
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rv_stocks"
-            app:layout_constraintTop_toBottomOf="@+id/btn_reset"/>
+            app:layout_constraintTop_toBottomOf="@+id/ll_column_title"
+            app:layout_constraintBottom_toTopOf="@id/ll_trade_buttons"/>
+    <TextView  android:layout_width="match_parent"
+               style="@style/title"
+              app:layout_constraintTop_toBottomOf="@+id/rv_stocks"
+              app:layout_constraintBottom_toTopOf="@id/ll_trade_info"
+            android:id="@+id/tv_trade_title"
+            android:text="Trade Stock"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
+                  android:orientation="horizontal"
+                  app:layout_constraintTop_toBottomOf="@+id/tv_trade_title"
+                  app:layout_constraintBottom_toTopOf="@id/ll_trade_buttons"
+                  android:id="@+id/ll_trade_info">
+        <TextView style="@style/column_title_narrow"
+                  android:text="@string/ticker"/>
+        <EditText style="@style/column_title_narrow"
+                  android:hint="@string/ticker"
+                  android:inputType="textCapCharacters"/>
+        <TextView style="@style/column_title_narrow"
+                  android:text="@string/qty"/>
+        <EditText style="@style/column_title_narrow"
+                  android:hint="@string/qty"
+                  android:inputType="number"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="60dp"
+                  android:orientation="horizontal"
+                  app:layout_constraintTop_toBottomOf="@+id/ll_trade_info"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  android:id="@+id/ll_trade_buttons">
+        <Button style="@style/column_title_wide"
+                android:text="@string/buy"/>
+        <Button style="@style/column_title_wide"
+                android:text="@string/sell"/>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

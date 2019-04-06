@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Stock Gain Tracker</string>
+    <string name="percent_change">Change (%)</string>
+    <string name="price">Price</string>
+    <string name="stock">Stock</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="ticker">Ticker</string>
+    <string name="qty">Qty.</string>
+    <string name="stock_gain_tracker">Stock Gain Tracker</string>
 </resources>
