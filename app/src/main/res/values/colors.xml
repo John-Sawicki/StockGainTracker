@@ -3,11 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="loseMinor">#ff7961</color>
-    <color name="loseMedium">#f44336</color>
-    <color name="loseMajor">#ba000d</color>
-    <color name="gainMinor">#76d275</color>
-    <color name="gainMedium">#43a047</color>
-    <color name="gainMajor">#00701a</color>
+    <color name="loseMinor">#EF9A9A</color>
+    <color name="loseMedium">#E57373</color>
+    <color name="loseMajor">#E53935</color>
+    <color name="gainMinor">#A5D6A7</color>
+    <color name="gainMedium">#81C784</color>
+    <color name="gainMajor">#43A047</color>
 
 </resources>
