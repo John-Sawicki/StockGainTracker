@@ -26,23 +26,20 @@ class StockAdapter(private val context: Context): RecyclerView.Adapter<StockAdap
     }
 
     override fun onBindViewHolder(holder: StockViewHolder, position: Int) {
-        var change =2.5
+        var change =5.5//percent change value
         holder.view.tv_stock_ticker.text ="xom"
         holder.view.tv_stock_price.text="$90.44"
        //TODO change color to white for darker colors
         holder.view.tv_stock_change.text="+1.23%"
-        holder.view.tv_stock_change.setBackgroundColor(backGroundColor(context,3.55 ))
+        holder.view.tv_stock_change.setTextColor(backGroundTextColor(context,change ))
+        holder.view.tv_stock_change.setBackgroundColor(backGroundColor(context,change ))
         holder.view.tv_stock_name.text= "Exxon Mobile"
-
     }
-
     override fun getItemCount(): Int {
         //return stockTickers.size
         return 1
     }
-
     class StockViewHolder(val view: View):RecyclerView.ViewHolder(view){
-
         //tv_stock_ticker =
         //tv_stock_price
         //tv_stock_change
@@ -83,36 +80,21 @@ class StockAdapter(private val context: Context): RecyclerView.Adapter<StockAdap
         }
      }
     fun backGroundTextColor(context: Context,percent: Double):Int {    //return the background color based on the stock percent change
+        Log.d(logging, "backGroundTextColor start ")
         @TargetApi(23)
         if (Build.VERSION.SDK_INT < 23) {
-            Log.d(logging, "api is less than 22 " + context.getColor(R.color.gainMajor).toString())
-            if (percent > 3.0) {
-                return context.getColor(R.color.gainMajor)
-            } else if (percent > 1.0) {
-                return context.getColor(R.color.gainMedium)
-            } else if (percent >= 0.0) {
-                return context.getColor(R.color.gainMinor)
-            } else if (percent >= -1.0) {
-                return context.getColor(R.color.loseMinor)
-            } else if (percent >= -3.0) {
-                return context.getColor(R.color.loseMedium)
+            Log.d(logging, "api is less than 22 for text ")
+            if (percent > 3.0 || percent< -3.0) {
+                return context.getColor(android.R.color.white)
             } else {
-                return context.getColor(R.color.loseMajor)
+                return context.getColor(android.R.color.black)
             }
         } else {//api 23+, marshmallow+
-            Log.d(logging, "api is more than 22 " + ContextCompat.getColor(context, R.color.gainMajor))
-            if (percent > 3.0) {
-                return ContextCompat.getColor(context, R.color.gainMajor)
-            } else if (percent > 1.0) {
-                return context.getColor(R.color.gainMedium)
-            } else if (percent >= 0.0) {
-                return context.getColor(R.color.gainMinor)
-            } else if (percent >= -1.0) {
-                return context.getColor(R.color.loseMinor)
-            } else if (percent >= -3.0) {
-                return context.getColor(R.color.loseMedium)
+            Log.d(logging, "api is more than 22 for text")
+            if (percent > 3.0 || percent <-3.0) {
+                return ContextCompat.getColor(context, android.R.color.white)
             } else {
-                return context.getColor(R.color.loseMajor)
+                return ContextCompat.getColor(context, android.R.color.black)
             }
         }
     }
