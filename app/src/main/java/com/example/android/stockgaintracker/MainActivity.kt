@@ -9,6 +9,8 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.LinearLayoutManager
 
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import com.example.android.stockgaintracker.Adapter.StockAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
@@ -43,5 +45,15 @@ class MainActivity : AppCompatActivity() {
                 println("json fetch failed for stock values")  //info message
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 }
