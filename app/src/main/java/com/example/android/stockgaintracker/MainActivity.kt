@@ -1,6 +1,7 @@
 package com.example.android.stockgaintracker
 
 import android.annotation.TargetApi
+import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -49,11 +50,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.main, menu)
+        inflater.inflate(R.menu.main_act_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        var itemClicked = item?.itemId
+        if(itemClicked==R.id.shared_pref){
+            //val intent = Intent(this, SettingsActivity::class.java)
+            //startActivity(intent)
+            startActivity(Intent(this, SettingsActivity::class.java))
+
+        }
         return super.onOptionsItemSelected(item)
     }
 }

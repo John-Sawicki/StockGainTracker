@@ -35,6 +35,5 @@
         <item name="android:gravity">right</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginRight">16dp</item>
-
     </style>
 </resources>

@@ -34,7 +34,30 @@
         <item>0</item>
         <item>-1</item>
     </string-array>
-
+    <string-array name="currencies_names">
+        <item>US dollar (USD)</item>
+        <item>Euro (EUR)</item>
+        <item>Japanese Yen (JPY)</item>
+        <item>The Pound Sterling (GBP)</item>
+        <item>Australian Dollar (AUD)</item>
+        <item>Canadian Dollar (CAD)</item>
+        <item>Swiss franc (CHF)</item>
+        <item>Chinese Renminbi (CNY)</item>
+        <item>Swedish krona (SEK)</item>
+        <item>New Zealand Dollar (NZD)</item>
+    </string-array>
+    <integer-array name="currencies">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </integer-array>
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
 
