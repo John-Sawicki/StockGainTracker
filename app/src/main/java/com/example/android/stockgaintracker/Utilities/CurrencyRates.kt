@@ -23,7 +23,9 @@ class CurrencyRates{
                     Log.d(tag, "rawJson $rawJson")
                     val gson = GsonBuilder().create()
                     val maninJson = gson.fromJson(rawJson, MainJson::class.java)
+                    val childJson = maninJson.rates
                     Log.d(tag, "base ${maninJson.base}")
+                    Log.d(tag, "aed ${childJson.AED}")
                     /*
                     Log.d(tag, "success json $rawJson")
                     if(rawJson!=null){
