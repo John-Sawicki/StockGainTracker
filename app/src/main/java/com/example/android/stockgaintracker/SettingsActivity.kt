@@ -1,10 +1,9 @@
-package com.example.android.stockgaintracker.Adapter
+package com.example.android.stockgaintracker
 
 import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.preference.PreferenceFragmentCompat
-import com.example.android.stockgaintracker.R
 
 
 class SettingsActivity : AppCompatActivity() , SharedPreferences.OnSharedPreferenceChangeListener{
