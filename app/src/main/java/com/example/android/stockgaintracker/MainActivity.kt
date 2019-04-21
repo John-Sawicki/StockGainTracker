@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        rv_stocks.layoutManager = LinearLayoutManager(this)
+        //rv_stocks.layoutManager = LinearLayoutManager(this)
         rv_stocks.adapter = StockAdapter(applicationContext)
         Log.d(tag, "onCreate")
         fetchJson()
@@ -57,10 +57,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         var itemClicked = item?.itemId
         if(itemClicked==R.id.shared_pref){
-            //val intent = Intent(this, SettingsActivity::class.java)
-            //startActivity(intent)
             startActivity(Intent(this, SettingsActivity::class.java))
-
+        }else if(itemClicked ==R.id.custom_pref){
+            startActivity(Intent(this, CustomSettingActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
