@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import okhttp3.*
 import java.io.IOException
+import java.sql.Wrapper
 
 class StockPrice{
     companion object {
@@ -33,10 +34,22 @@ class StockPrice{
                     val gson = GsonBuilder().create()
                     val mainStockJson = gson.fromJson(rawJson, MainStockJson::class.java)
                     Log.d(tag, "tickers returned ${mainStockJson.symbols_returned}")
-                    val stockJsonInfos = mainStockJson.data
-                    for(stockJsonInfo  in stockJsonInfos){
+                    for(stockJsonInfo in mainStockJson.data.indices){
+                        var stockJsonInfoZero  = mainStockJson.data[stockJsonInfo]
+                        Log.d(tag," for loop ${stockJsonInfoZero.name}")
+                    }
+
+                    //val stockJsonInfos = mainStockJson.data[0]//creates  an array of stock ticker infomation
+                                    val stockJsonInfoOne = mainStockJson.data[1]//creates  an array of stock ticker infomation
+                                    Log.d(tag,"stock name  ${stockJsonInfoOne.name}" )
+
+
+                    /*
+                    for(stockJsonInfo in mainStockJson.data){
                         Log.d(tag,"stock name  $stockJsonInfo.name}" )
                     }
+                    */
+
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
