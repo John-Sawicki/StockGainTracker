@@ -7,8 +7,13 @@ import okhttp3.*
 import java.io.IOException
 
 class CurrencyRates{
+    interface OnNewCurrency{
+        fun onNewCurrency(cur: kotlin.Double)
+    }
+
     companion object {
         fun fetchCurrencyJson(currencyName: String):Double{
+            var mOnCurrencyComplete : OnNewCurrency
             val tag ="CurrencyRatesClass"
             var jsonResult = "USD"
             var currencyCo =-1.0 //if unable to retrieve currencies, -1 return value to show toast msg and show currency in USD
@@ -22,18 +27,12 @@ class CurrencyRates{
                     val rawJson = response.body()?.string()
                     Log.d(tag, "rawJson $rawJson")
                     val gson = GsonBuilder().create()
-                    val maninJson = gson.fromJson(rawJson, MainJson::class.java)
-                    val childJson = maninJson.rates
-                    Log.d(tag, "base ${maninJson.base}")
-                    Log.d(tag, "aed ${childJson.AED}")
-                    /*
-                    Log.d(tag, "success json $rawJson")
-                    if(rawJson!=null){
-                        jsonResult = rawJson
-                        currencyCo = CurrencyConversion.getCurrencyCo(jsonResult, currencyName)
-                        Log.d(tag, "onrepsonse value $currencyCo")
-                    }
-                    */
+                    val mainJson = gson.fromJson(rawJson, MainJson::class.java)
+                    val childJson = mainJson.rates
+                    Log.d(tag, "base ${mainJson.base}")
+                    Log.d(tag, "USD ${childJson.USD} CAD ${childJson.CAD}")
+                   // mOnCurrencyComplete(childJson.USD)
+
                 }
                 override fun onFailure(call: Call, e: IOException) {
                     println("json fetch failed for stock values")  //info message, the dollar is the universal currency
@@ -47,5 +46,6 @@ class CurrencyRates{
 
 }
 class MainJson(val base: String, val rates: JsonRates)
-class JsonRates(val AED: Double, val AWG: Double)
-//class CurrencyClass(val AED: Double, val EUR: Double)
+class JsonRates(val USD: Double, val EUR: Double, val JPY: Double, val GBP: Double,
+                val AUD: Double, val CAD: Double, val CHF: Double, val CNY: Double,
+                val SEK: Double, val NZD: Double)

@@ -30,8 +30,8 @@ class StockAdapter(private val context: Context): RecyclerView.Adapter<StockAdap
         holder.view.tv_stock_ticker.text ="xom"
         holder.view.tv_stock_price.text="$90.44"
         holder.view.tv_stock_change.text="+1.23%"
-        holder.view.tv_stock_change.setBackgroundColor(ChangeColor.backGndColor(context,change ))
-        holder.view.tv_stock_change.setTextColor(ChangeTxColor.backGndTxColor(context,change ))
+            holder.view.tv_stock_change.setBackgroundColor(ChangeColor.backGndColor(context,change ))
+            holder.view.tv_stock_change.setTextColor(ChangeTxColor.backGndTxColor(context,change ))
         holder.view.tv_stock_name.text= "Exxon Mobile"
     }
     override fun getItemCount(): Int {

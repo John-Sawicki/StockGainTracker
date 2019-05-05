@@ -12,6 +12,7 @@ import android.view.MenuItem
 import com.example.android.stockgaintracker.Adapter.StockAdapter
 import com.example.android.stockgaintracker.Utilities.CurrencyConversion
 import com.example.android.stockgaintracker.Utilities.CurrencyRates
+import com.example.android.stockgaintracker.Utilities.StockPrice
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     var currencyName = "USD"
     var returnJson = "USD"
     var currencyCoeff = 1.0 //for USD
+    var stockTestArray= arrayOf("XOM", "AAPL", "LNG")
     //TODO add currency api
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         Log.d(tag, "raw json $returnJson")
         //currencyCoeff = CurrencyConversion.getCurrencyCo("hi", currencyName)
         //currencyCoeff = CurrencyConversion.getCurrencyCo(returnJson, currencyName)  //return the conversion rate from USD to user's choice
-
+        StockPrice.getStockPrices(stockTestArray)   //static values for testing the class
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
