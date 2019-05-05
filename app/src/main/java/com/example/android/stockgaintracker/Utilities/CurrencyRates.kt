@@ -2,7 +2,6 @@ package com.example.android.stockgaintracker.Utilities
 
 import android.util.Log
 import com.google.gson.GsonBuilder
-
 import okhttp3.*
 import java.io.IOException
 
@@ -19,7 +18,7 @@ class CurrencyRates{
             var currencyCo =-1.0 //if unable to retrieve currencies, -1 return value to show toast msg and show currency in USD
             Log.d(tag, "fetchJson start")
             println("fetch json start")  //info message
-            val url = "http://data.fixer.io/api/latest?access_key=0b8f3a332e80c3bf5bb94776ad121890"
+            val url = "http://data.fixer.io/api/latest?${ApiKeys.dataFixer}"
             val request = Request.Builder().url(url).build()
             val client = OkHttpClient()
             client.newCall(request).enqueue(object: Callback {

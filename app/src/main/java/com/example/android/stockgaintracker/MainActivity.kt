@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         Log.d(tag, "raw json $returnJson")
         //currencyCoeff = CurrencyConversion.getCurrencyCo("hi", currencyName)
         //currencyCoeff = CurrencyConversion.getCurrencyCo(returnJson, currencyName)  //return the conversion rate from USD to user's choice
+
+
         StockPrice.getStockPrices(stockTestArray)   //static values for testing the class
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
