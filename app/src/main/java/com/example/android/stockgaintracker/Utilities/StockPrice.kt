@@ -4,13 +4,12 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import okhttp3.*
 import java.io.IOException
-import java.sql.Wrapper
 
 class StockPrice{
     companion object {
         fun getStockPrices(stockNames: Array<String>){
             val tag = "StockPriceClass"
-            var jsonResult :Array<StockInfo>
+            var jsonResult :ArrayList<StockInfo> = ArrayList()
             var stockTickersUrl =""
             if(stockNames.lastIndex>0){
                 for(stockTicker in stockNames){
@@ -34,28 +33,28 @@ class StockPrice{
                     val gson = GsonBuilder().create()
                     val mainStockJson = gson.fromJson(rawJson, MainStockJson::class.java)
                     Log.d(tag, "tickers returned ${mainStockJson.symbols_returned}")
+                    var oneStockInfo:StockInfo
                     for(stockJsonInfo in mainStockJson.data.indices){
-                        var stockJsonInfoZero  = mainStockJson.data[stockJsonInfo]
-                        Log.d(tag," for loop ${stockJsonInfoZero.name}")
+                        val stockJsonInfoIndex  = mainStockJson.data[stockJsonInfo]
+
+                        var stockSymbol = stockJsonInfoIndex.symbol
+                        var stockName = stockJsonInfoIndex.name
+                        var stockPrice = stockJsonInfoIndex.price
+                        var stockChange = stockJsonInfoIndex.change_pct
+                        oneStockInfo=StockInfo(stockSymbol,stockName,stockPrice,stockChange)
+                        jsonResult.add(oneStockInfo)//add four data points from the stock to the array list to return to main activity
+
+
+                        var checkArrayStock = jsonResult[0]
+                        Log.d(tag," for loop ${stockJsonInfoIndex.name} and stock info class ${oneStockInfo.mSymbol} in array list ${checkArrayStock.mSymbol}")
                     }
-
-                    //val stockJsonInfos = mainStockJson.data[0]//creates  an array of stock ticker infomation
-                                    val stockJsonInfoOne = mainStockJson.data[1]//creates  an array of stock ticker infomation
-                                    Log.d(tag,"stock name  ${stockJsonInfoOne.name}" )
-
-
-                    /*
-                    for(stockJsonInfo in mainStockJson.data){
-                        Log.d(tag,"stock name  $stockJsonInfo.name}" )
-                    }
-                    */
-
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
                     Log.d(tag, "stock json failure")
                 }
             })
+
         }
     }
 }
