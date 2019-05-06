@@ -58,5 +58,5 @@ class StockPrice{
         }
     }
 }
-class MainStockJson(val symbols_returned: String, val data: Array<StockJsonInfos>)//if there are 3 tickers in the url, there will be three elements in the array
+class MainStockJson(val symbols_returned: Int, val data: Array<StockJsonInfos>)//if there are 3 tickers in the url, there will be three elements in the array
 class StockJsonInfos(val symbol: String, val name: String, val price: String, val change_pct: String)
