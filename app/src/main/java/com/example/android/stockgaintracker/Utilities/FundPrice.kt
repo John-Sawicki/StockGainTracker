@@ -34,7 +34,7 @@ class FundPrice{
                         var fundName = fundJsonInfoIndex.name
                         var fundPrice = fundJsonInfoIndex.price
                         var fundChange = fundJsonInfoIndex.change_pct
-                        oneFundInfo = StockInfo(fundSymbol, fundName, fundPrice, fundPrice)
+                        oneFundInfo = StockInfo(fundSymbol, fundName, fundPrice, fundChange)
                         jsonResult.add(oneFundInfo)
                     }
                 }

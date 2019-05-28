@@ -2,6 +2,7 @@ package com.example.android.stockgaintracker.Adapter
 
 import android.annotation.TargetApi
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.support.v4.content.ContextCompat
 
@@ -11,21 +12,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.android.stockgaintracker.R
+import com.example.android.stockgaintracker.StockDetailActivity
+import com.example.android.stockgaintracker.Utilities.StockInfo
+import kotlinx.android.synthetic.main.activity_settings.view.*
 import kotlinx.android.synthetic.main.stock_layout.view.*
 //https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=43A047
 
-class StockAdapter(private val context: Context): RecyclerView.Adapter<StockAdapter.StockViewHolder>() {
+//class StockAdapter(private val context: Context): RecyclerView.Adapter<StockAdapter.StockViewHolder>() {
+class StockAdapter(private val context: Context, val listOfStock: ArrayList<StockInfo>): RecyclerView.Adapter<StockAdapter.StockViewHolder>() {
     private var logging= "StockAdapter"
 
     val stockTickers = listOf("ticker", "$89", "1.00%", "Vangaurd Energy Fund")
     var stockInfo= arrayOf("ticker", "$89", "1.00%", "Vangaurd Energy Fund")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):StockViewHolder {
-        val layoutInflater =LayoutInflater.from(parent?.context)
+        val layoutInflater =LayoutInflater.from(parent.context)
         val row = layoutInflater.inflate(R.layout.stock_layout, parent,false)
         return StockViewHolder(row)
     }
 
     override fun onBindViewHolder(holder: StockViewHolder, position: Int) {
+        var change =5.5//percent change value
+        var aStock = listOfStock[position]
+        holder.view.tv_stock_ticker.text =aStock.mSymbol
+        holder.view.tv_stock_price.text=aStock.mSockPrice
+        holder.view.tv_stock_change.text=aStock.mChangePct
+        holder.view.tv_stock_change.setBackgroundColor(ChangeColor.backGndColor(context,change ))
+        holder.view.tv_stock_change.setTextColor(ChangeTxColor.backGndTxColor(context,change ))
+        holder.view.tv_stock_name.text= aStock.mStockName
+        /*
         var change =5.5//percent change value
         holder.view.tv_stock_ticker.text ="xom"
         holder.view.tv_stock_price.text="$90.44"
@@ -33,16 +47,21 @@ class StockAdapter(private val context: Context): RecyclerView.Adapter<StockAdap
             holder.view.tv_stock_change.setBackgroundColor(ChangeColor.backGndColor(context,change ))
             holder.view.tv_stock_change.setTextColor(ChangeTxColor.backGndTxColor(context,change ))
         holder.view.tv_stock_name.text= "Exxon Mobile"
+        */
+
     }
     override fun getItemCount(): Int {
-        //return stockTickers.size
-        return 1
+        var sizeArray =listOfStock.size
+        Log.d(logging, " $sizeArray")
+        return sizeArray
     }
     class StockViewHolder(val view: View):RecyclerView.ViewHolder(view){
-        //tv_stock_ticker =
-        //tv_stock_price
-        //tv_stock_change
-        //tv_stock_name
+       init {
+           view.setOnClickListener {
+               val intent = Intent(view.context, StockDetailActivity::class.java)
+               view.context.startActivity(intent)
+           }
+       }
     }
     fun backGroundColor(context: Context,percent: Double):Int {    //return the background color based on the stock percent change
      @TargetApi(23)

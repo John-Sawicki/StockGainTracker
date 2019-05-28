@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.v7.widget.LinearLayoutManager
 
 import android.util.Log
 import android.view.Menu
@@ -12,6 +13,7 @@ import android.view.MenuItem
 import com.example.android.stockgaintracker.Adapter.StockAdapter
 import com.example.android.stockgaintracker.Utilities.CurrencyConversion
 import com.example.android.stockgaintracker.Utilities.CurrencyRates
+import com.example.android.stockgaintracker.Utilities.StockInfo
 import com.example.android.stockgaintracker.Utilities.StockPrice
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,12 +23,18 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     var returnJson = "USD"
     var currencyCoeff = 1.0 //for USD
     var stockTestArray= arrayOf("XOM", "AAPL", "LNG")
+    var stocksArray: Array<StockInfo> = arrayOf(StockInfo("a", "b","c","d"))
+    var stocksList: ArrayList<StockInfo> = ArrayList<StockInfo>()
     //TODO add currency api
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //rv_stocks.layoutManager = LinearLayoutManager(this)
-        rv_stocks.adapter = StockAdapter(applicationContext)
+        var stock1: StockInfo = StockInfo("aapl", "aapl","170","2.00")
+        var stock2: StockInfo = StockInfo("ge", "GE","10","1.00")
+        stocksList.add(stock1)
+        stocksList.add(stock2)
+        rv_stocks.layoutManager = LinearLayoutManager(this)
+        rv_stocks.adapter = StockAdapter(applicationContext,stocksList)
         Log.d(tag, "onCreate")
         setUpPreferences()
         currencyCoeff =CurrencyRates.fetchCurrencyJson(currencyName)   //return all major currency values
